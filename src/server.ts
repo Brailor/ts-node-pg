@@ -6,6 +6,7 @@ import http from 'http';
 import { logger } from './log';
 import { PORT } from './constants';
 import router from './routers/main';
+import exphbs from 'express-handlebars';
 
 dotenv.config({ path: '.env.config' });
 
@@ -29,6 +30,12 @@ function setupRouting(app: express.Application) {
 function setupMiddlewares(app: express.Application) {
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+
+  app.set('views', 'src/views');
+
+  app.engine('.hbs', exphbs({ extname: '.hbs', defaultLayout: 'main', layoutsDir: 'src/views/layouts' }));
+
+  app.set('view engine', '.hbs');
 }
 
 export async function startExpressServer(): Promise<{ app: express.Application; server: http.Server }> {

@@ -17,10 +17,11 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/register', (req, res) => {
-  res.sendFile(join(__dirname, '../public', 'register.html'));
+  //   res.sendFile(join(__dirname, '../public', 'register.html'));
+  res.render('register');
 });
 
 // setup routers here
-router.use('/auth', authRouter);
+// router.use('/auth', authRouter);
 
 export default router;

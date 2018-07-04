@@ -11,7 +11,7 @@
       e.preventDefault();
 
       let hasEmptyField = [usernameInput, emailInput, passwordInput, passwordConfirmationInput].some(element => {
-        return element.value === undefined || element.value === null;
+        return element.value === undefined || element.value === null || element.value === '';
       });
 
       if (hasEmptyField) {

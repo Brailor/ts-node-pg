@@ -26,7 +26,9 @@
         <input name="password_confirmation" type="password" id="password_confirmation" data-js="input-password_confirmation">
         <br>
 
-        <input type="submit" value="Register" data-js="button-register">
+        <input type="submit" value="Register" data-js="button-register"> {{#each messages}}
+        <div>{{this.msg}}</div>
+        {{/each}}
 
     </form>
 </main>

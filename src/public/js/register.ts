@@ -7,7 +7,7 @@
   let roleSelect: HTMLSelectElement = document.querySelector('[data-js="input-role"]');
 
   form &&
-    form.addEventListener('submit', (e: Event) => {
+    form.addEventListener('submit', async (e: Event) => {
       e.preventDefault();
 
       let hasEmptyField = [usernameInput, emailInput, passwordInput, passwordConfirmationInput].some(element => {
@@ -35,9 +35,27 @@
 
       console.log(payload);
 
-      fetch('localhost:3005/auth/register', {
+      let response = await fetch('http://localhost:3005/auth/register', {
         method: 'POST',
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        cache: 'no-cache',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
+
+      let json = await response.json();
+      let { success, messages } = json;
+
+      if (!success) {
+        messages.forEach(element => {
+          console.log(element.msg);
+        });
+
+        return;
+      }
+
+      window.location.replace(`http://localhost:3005${json.redirect}`);
     });
 })();

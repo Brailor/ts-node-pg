@@ -1,7 +1,6 @@
 import * as express from 'express';
-import { join } from 'path';
 
-import * as authRouter from './auth-router';
+import authRouter from './auth-router';
 
 const router = express.Router();
 
@@ -13,15 +12,14 @@ router.get('/', async (req, res, next) => {
 });
 
 router.get('/login', (req, res) => {
-  res.sendFile(join(__dirname, '../public', 'login.html'));
+  res.render('login', { title: 'Login' });
 });
 
 router.get('/register', (req, res) => {
-  //   res.sendFile(join(__dirname, '../public', 'register.html'));
-  res.render('register');
+  res.render('register', { title: 'Register' });
 });
 
 // setup routers here
-// router.use('/auth', authRouter);
+router.use('/auth', authRouter);
 
 export default router;

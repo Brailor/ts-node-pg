@@ -3,7 +3,7 @@
     "watch": true,
     "module": "commonjs",
     "esModuleInterop": true,
-    "target": "es5",
+    "target": "es6",
     "noImplicitAny": false,
     "moduleResolution": "node",
     "sourceMap": true,
